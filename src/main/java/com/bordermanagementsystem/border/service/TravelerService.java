@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bordermanagementsystem.border.model.Traveler;
 import com.bordermanagementsystem.border.repository.TravelerRepository;
 
+
+@Service
 public class TravelerService {
 
      @Autowired
