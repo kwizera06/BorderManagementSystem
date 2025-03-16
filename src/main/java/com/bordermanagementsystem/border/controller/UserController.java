@@ -58,9 +58,25 @@ public class UserController {
     }
 
     // Delete User
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/userId")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }
+
+    /**
+     * @param loginRequest
+     * @return
+     */
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody User loginRequest) {
+        User user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+
+        if (user != null) {
+            return ResponseEntity.ok(user); // Return user data on success
+        } 
+        else {
+            return ResponseEntity.badRequest().body("Invalid username or password");
+}
+}
 }

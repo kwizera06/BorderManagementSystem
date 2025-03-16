@@ -46,4 +46,17 @@ public class UserService {
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
+
+    public User loginUser(String username, String password) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            if (user.getPassword().equals(password)) { // Compare plain text (Not secure)
+                return user; // Return user details if login is successful
+            }
+        }
+        return null; // Return null if credentials are incorrect
+}
 }
